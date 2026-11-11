@@ -1,0 +1,104 @@
+Microsoft Windows [Version 10.0.26200.9711]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Javis>mysqlsh
+MySQL Shell 8.4.5
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306  SQL > use t3;
+Default schema set to `t3`.
+Fetching global names, object names from `t3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306  t3  SQL > select comparar_valores (2,3);
++------------------------+
+| comparar_valores (2,3) |
++------------------------+
+| 3 es mas grande        |
++------------------------+
+1 row in set (0.0026 sec)
+ MySQL  localhost:3306  t3  SQL > select comparar_valores (16,4);
++-------------------------+
+| comparar_valores (16,4) |
++-------------------------+
+| 16 es mas grande        |
++-------------------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:3306  t3  SQL > select comparar_valores (16,16);
++--------------------------+
+| comparar_valores (16,16) |
++--------------------------+
+| Los valores son iguales  |
++--------------------------+
+1 row in set (0.0006 sec)
+ MySQL  localhost:3306  t3  SQL > select es_par(4)
+                               -> ;
++-----------------+
+| es_par(4)       |
++-----------------+
+| el valor es par |
++-----------------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306  t3  SQL > select es_par(0) ;
++-----------------+
+| es_par(0)       |
++-----------------+
+| el valor es par |
++-----------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:3306  t3  SQL > select es_par(1) ;
++-------------------+
+| es_par(1)         |
++-------------------+
+| el valor es impar |
++-------------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306  t3  SQL > select es_par(9) ;
++-------------------+
+| es_par(9)         |
++-------------------+
+| el valor es impar |
++-------------------+
+1 row in set (0.0004 sec)
+ MySQL  localhost:3306  t3  SQL > drop function dia_semana;
+Query OK, 0 rows affected (0.0131 sec)
+ MySQL  localhost:3306  t3  SQL > select dia_semana(3) ;
++-------------------------+
+| dia_semana(3)           |
++-------------------------+
+| Numero de dia no valido |
++-------------------------+
+1 row in set (0.0093 sec)
+ MySQL  localhost:3306  t3  SQL > drop function dia_semana;
+Query OK, 0 rows affected (0.0128 sec)
+ MySQL  localhost:3306  t3  SQL > select dia_semana(3) ;
++---------------+
+| dia_semana(3) |
++---------------+
+| Martes        |
++---------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306  t3  SQL > create table city as sakila.city select city_id, city;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sakila.city select city_id, city' at line 1
+ MySQL  localhost:3306  t3  SQL > create table city as sakila.city select city_id, city from city;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sakila.city select city_id, city from city' at line 1
+ MySQL  localhost:3306  t3  SQL > create table city as select city_id, city from sakila.city;
+Query OK, 600 rows affected (0.0309 sec)
+
+Records: 600  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t3  SQL > select contar_ciudades();
++-------------------+
+| contar_ciudades() |
++-------------------+
+|               600 |
++-------------------+
+1 row in set (0.0017 sec)
+(i-search)`':
